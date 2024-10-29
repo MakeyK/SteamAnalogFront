@@ -1,6 +1,6 @@
 import React, {useContext, useState}  from "react";
 import {Card, Container, Form, Button, Col} from 'react-bootstrap'
-import { LOGIN_ROUTE, REGISTRATION_ROUTE, EDITPROFILE_ROUTE } from "../utils/consts";
+import { LOGIN_ROUTE, REGISTRATION_ROUTE } from "../utils/consts";
 import Row from 'react-bootstrap/Row'
 import { useLocation, NavLink, useNavigate } from "react-router-dom";
 import { login, registration } from "../http/userApi";
@@ -9,10 +9,9 @@ import {Context} from "../index";
 import NavBar from "../components/NavBar";
 
 const Registration = observer(() => {
-    document.body.style.backgroundImage ="url(/cloud.png)";
     document.body.style.backgroundRepeat = "no-repeat";
     document.body.style.backgroundPositionY = "450px"
-    document.body.style.backgroundColor="#D0D0D0"
+    document.body.style.backgroundColor="#313131"
     const {user} = useContext(Context)
     const navigate =useNavigate()
     const location = useLocation()
@@ -30,7 +29,7 @@ const Registration = observer(() => {
     }
     user.setUser()
     user.setIsAuth(true)
-    navigate(EDITPROFILE_ROUTE)}
+    navigate(LOGIN_ROUTE)}
     catch(e){
     alert(e)
     }
@@ -39,58 +38,73 @@ const Registration = observer(() => {
         <Container
         className = 'd-flex justify-content-center align-items-center'
         style = {{height: window.innerHeight - 54}}>
-        <Card style={{width: 900, borderRadius: 80, height: 520, fontFamily:"Play"}} className="p-5 #FFFAF4">
-            <h2 className="m-auto" style={{color:'black', fontSize: '36px', height: 300, width: 239, position:'relative'}}>{isLogin ? 'Авторизация' : 'Регистрация'}</h2>
-            <Form className="d-flex flex-column" style={{position:'relative', paddingBottom:'100px'}}>
+        <Card style={{width: 1016, marginTop:"73px", borderRadius: 86, height: 934, fontFamily:"Stalinist One", backgroundColor:'#595959'}} className="p-5 #FFFAF4">
+            <h2 style={{fontSize: '48px', marginLeft:'170px', marginBottom:'26px', width: 586, position:'relative', color:'#C9E956', textShadow:'-1px -1px 0 #000, 1px -1px 0 #000, -1px  1px 0 #000, 1px  1px 0 #000'}}>
+            Регистрация
+            </h2>
+            <Form className="d-flex flex-column" style={{position:'relative'}}>
                 <Form.Control
-                style={{borderRadius: 70, height: 71, border: "1px solid", fontSize: '24px'}}
+                 style={{borderRadius: '21px', paddingLeft:'38px', height: 68, fontSize: "24px", marginBottom:"27px", border: "5px solid", backgroundColor:'#595959', borderColor:'#F9FFE9'}}
                 className="mt-3"
                 size="lg"
-                placeholder = "Введите ваш email..."
-                value = {email}
+                placeholder = "Введите ваш телефон/email..."
                 onChange = { e => setEmail(e.target.value)}
-                type="email"
                 />
                 
-                <Form.Control
-                style={{borderRadius: 70, height: 71, border: "1px solid", fontSize: '24px'}}
+                <Form.Control 
+                style={{borderRadius: '21px', paddingLeft:'38px', height: 68, fontSize: "24px", marginBottom:"27px", border: "5px solid", backgroundColor:'#595959', borderColor:'#F9FFE9'}}
                 className="mt-3"
                 size="lg"
-                placeholder = "Введите ваш пароль..."
+                placeholder = "Ваш логин...."
+                value = {password_check}
+                onChange = { e => setPasswordCheck(e.target.value)}
+                type="password"
+                />
+
+                <Form.Control
+                style={{borderRadius: '21px', paddingLeft:'38px', height: 68, fontSize: "24px", marginBottom:"27px", border: "5px solid", backgroundColor:'#595959', borderColor:'#F9FFE9'}}
+                className="mt-3"
+                size="lg"
+                placeholder = "Пароль..."
                 value = {password}
                 onChange = { e => setPassword(e.target.value)}
                 type="password"
                 />
 
                 <Form.Control 
-                style={{borderRadius: 70, height: 71, border: "1px solid", fontSize: '24px'}}
+                 style={{borderRadius: '21px', paddingLeft:'38px', height: 68, fontSize: "24px", marginBottom:"27px", border: "5px solid", backgroundColor:'#595959', borderColor:'#F9FFE9'}}
                 className="mt-3"
                 size="lg"
-                placeholder = "Введите ваш пароль ещё раз..."
+                placeholder = "Введите ваш пароль повторно..."
                 value = {password_check}
                 onChange = { e => setPasswordCheck(e.target.value)}
                 type="password"
                 />
 
-                <Row>
-                    <Col className="d-flex justify-content-between mt-3 pl-3 pr-3">
-                {isLogin? 
-                <div> <NavLink to={EDITPROFILE_ROUTE}> Регистрация </NavLink> </div>
-                :
-                <div> <p style={{fontSize:"24px"}}>Есть аккаунт? <NavLink to={LOGIN_ROUTE} variant={"outline-link"}>Войти</NavLink> </p> </div>}
-                 <Button
-                 style={{borderRadius: 41, height:71, width:195}}
-                 variant={"outline-dark"}
-                 size="lg"
+                <Form.Control 
+                 style={{borderRadius: '21px', paddingLeft:'38px', height: 68, fontSize: "24px", marginBottom:"27px", border: "5px solid", backgroundColor:'#595959', borderColor:'#F9FFE9'}}
+                className="mt-3"
+                size="lg"
+                placeholder = "Тип аккаунта"
+                value = {password_check}
+                onChange = { e => setPasswordCheck(e.target.value)}
+                type="password"
+                />
+                
+                <p style={{fontSize:"24px", textAlign:'center', color:'#F9FFE9', textShadow:'-1px -1px 0 #000, 1px -1px 0 #000, -1px  1px 0 #000, 1px  1px 0 #000'}}>Уже есть аккаунт? &nbsp;
+                <NavLink to={LOGIN_ROUTE} style={{color:'#C68DFE'}} variant={"outline-link"}>Войти</NavLink></p>
+                <div style={{textAlign:'center'}}>
+                <Button
+                style={{borderRadius: '19px', width:'500px', fontSize:'23px', height: 83, border: "5px solid", backgroundColor:'#595959', borderColor:'#F9FFE9', marginTop:'38px', color:'#C9E956', textShadow:'-1px -1px 0 #000, 1px -1px 0 #000, -1px  1px 0 #000, 1px  1px 0 #000'}}
+                variant={"outline-dark"}
+                size="lg"
                             onClick={click}>
-                       {isLogin ? 'Войти' : 'Регистрация'} 
-                 </Button>
-                 </Col>
-                 </Row>
-                 
+                       {isLogin ? '' : 'Зарегистрироваться'} 
+                </Button>
+                 </div>
             </Form>
         </Card>
-        <NavBar/>
+        {/* <NavBar/> */}
         </Container>
     );
 });
